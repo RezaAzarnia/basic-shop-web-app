@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  position: relative;
+}
+:root {
+  --green: #26a073;
+  --dark-green: #1e825c;
+  --white: #fff;
+  --danger: #d32f2f;
+  --danger-hover: #f44336;
+  --dark-warning: #ffa500;
+}
+/* loader part */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  z-index: 200;
+}
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--dark-warning);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 0.7s linear infinite;
+  border-radius: 50%;
+  border-top: 3px solid #fff;
+}
+.loader.hidden {
+  display: none;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* finish loader part */
+
+/*start  modal part */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 50%);
+  z-index: 100;
+  display: none;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: var(--white);
+  min-height: 250px;
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 600px;
+  max-height: 450px;
+  z-index: 200;
+  overflow: auto;
+  transition: all 0.5s;
+}
+.modal-overlay.active {
+  display: block;
+}
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  align-items: center;
+  text-transform: capitalize;
+}
+.modal-header h3 {
+  font-size: 25px;
+}
+
+.orders-list-item {
+  display: grid;
+  padding: 10px 0;
+  grid-template-columns: 60% 30% max-content;
+  border-bottom: 1px solid gray;
+  align-items: center;
+  justify-items: center;
+  height: 130px;
+}
+
+.order-detail {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  gap: 10px;
+  align-items: center;
+}
+.order-picture {
+  width: 20%;
+  height: 100%;
+  min-width: 50px;
+}
+.order-picture img {
+  width: 100%;
+  height: 100%;
+}
+.order-action button {
+  padding: 5px 12px;
+  width: unset;
+}
+.order-price {
+  font-weight: bold;
+}
+.decrease-button {
+  background-color: var(--danger);
+}
+.decrease-button:hover {
+  background-color: var(--danger-hover);
+}
+.show-cart {
+  position: fixed;
+  top: 35px;
+  right: 33px;
+}
+.orders-total-price {
+  margin-top: 20px;
+}
+/* finish modal part */
+.badge {
+  position: absolute;
+  right: -6px;
+  top: -7px;
+  color: var(--white);
+  background: var(--danger);
+  border-radius: 50%;
+  padding: 5px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  font-size: 13px;
+  align-items: center;
+  justify-content: center;
+}
+/* start main part */
+.cards-container {
+  max-width: 1100px;
+  margin: 40px auto;
+}
+.page-title {
+  text-align: center;
+  font-size: 30px;
+  text-transform: capitalize;
+}
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 480px;
+  margin: 30px;
+  gap: 30px;
+}
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 4px 1px gray;
+  border-radius: 5px;
+}
+.card-picture {
+  height: 65%;
+  padding: 25px;
+}
+.card-picture img {
+  width: 100%;
+  height: 100%;
+}
+.card-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.card-price span {
+  font-size: 30px;
+  font-weight: bold;
+}
+.card-btn {
+  width: 100%;
+}
+button {
+  color: var(--white);
+  border: none;
+  background: var(--green);
+  padding: 13px 20px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--dark-green);
+}
+
+@media screen and (max-width: 768px) {
+  .cards-container {
+    max-width: 100%;
+    padding: 10px;
+  }
+  .cards-row {
+    grid-template-columns: auto;
+  }
+  .modal {
+    width: 90%;
+    min-width: unset;
+  }
+  .orders-list-item {
+    grid-template-columns: auto;
+    height: auto;
+    gap: 15px;
+  }
+  .order-detail {
+    gap: 10px;
+    flex-direction: column;
+  }
+  .order-picture {
+    min-width: 120px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 990px) {
+  .cards-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* finish main part */
